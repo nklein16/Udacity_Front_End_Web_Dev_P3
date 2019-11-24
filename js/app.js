@@ -43,20 +43,6 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Enemy.prototype.checkCollisions = function(x, y, pX, pY) {
-//     this.x = x;
-//     this.y = y;
-//     player.x = pX;
-//     player.y = pY;
-
-//     // Collision detection
-//     if (player.x < this.x + 80 && player.x + 80 > this.x &&
-//         player.y < this.y + 70 && player.y + 70 > this.y) {
-//             return true;
-//     }
-//     return false;
-// };
-
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -96,33 +82,10 @@ Player.prototype.handleInput = function(e) {
     }
     // Handle situation if player makes it to the water
     if(player.y <= 0) {
-        
-        console.log("Game was won");
-        buildModal();
-        //displayModal();
-        // Display modal
-        // Get rid of modal
-        // reset board
-        // reset player on board
-        setTimeout(function() {
-
-            // Show winning message here, then reset Game and Player;
-            // Do not remove board; simply display message in pop-up modal on top of board
-            // setTimeout(function() {
-            //     console.log("Game was won");
-            //     buildModal();
-            //     // displayModal();
-            // }, 500)
-            console.log("you are in outer setTimeout");
-            resetBoard()
-            player.resetPlayer();
-        }, 3000);
+        player.resetPlayer();
+        displayModal();
     }
 
-    // Handle Collisions
-    // if(enemy.checkCollisions(enemy.x, enemy.y, this.x, this.y) === true) {
-    //     player.resetPlayer();
-    // }
 };
 
 /*
@@ -164,81 +127,19 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-function buildModal() {
-    
-    console.log("You are in buildModal");
 
-    let container = document.createElement('container');
-    
-    // let modal = document.createElement('modal');
-    // modal.style.width = '550';
-    // modal.style.height = '650';
-    // modal.style.justifySelf = 'center';
-    // modal.style.backgroundColor = 'gray';
-    
-    // let span = document.createElement('span');
-    
-    let heading = document.createElement('h1');
-    // heading.style.backgroundColor = 'blue'
-    heading.style.color = 'blue';
-    heading.style.justifyContent = 'center';
-    heading.innerHTML = 'Well done!  You made it to the river!';
 
-    // let closeButton = document.createElement('button');
-    // closeButton.style.backgroundColor = 'blue';
-    // closeButton.style.color = 'white';
-    // closeButton.style.justifyContent = 'center';
-    // closeButton.innerHTML = 'Close';
-
-    // span.appendChild(heading);
-    // span.appendChild(closeButton);    
-    // modal.appendChild(span);
-    // container.appendChild(modal);
-    container.appendChild(heading);
-    document.body.appendChild(container);
-    document.querySelector('canvas').style.display = 'none';
-};
-
+// Works correctly 
 function displayModal(){
 
-    console.log("You are in displayModal");
-    document.querySelector('canvas').style.display = 'none';
+    //  Display Game Over Modal
+    let modal = document.getElementById("gameOverModal");
+    modal.style.display = 'block';
 
-    setTimeout(function() {
+    // Listen for click event to close modal
+    var closeBtn = document.getElementsByClassName("closeBtn")[0];
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
 
-        // document.querySelector('canvas').style.display = 'none';
-        // document.querySelector('modal').toggleAttribute('modal');
-        // document.querySelector('modal').classList.on('.modal');
-        // document.querySelector('modal').on('modal');
-    }, 3000);
-
-    // closeButton.addEventListener('click', function() {
-    //     document.querySelector('.modal').classList.off('.modal');
-    // });
-
-    // setTimeout(function() {
-    //     document.querySelector('modal').classList.off('.modal');
-    // }, 3000);
 };
-
-function resetBoard() {
-    
-    console.log("You are now resetting the board");
-    
-    setTimeout(function() {
-        // document.querySelector('modal').toggleAttribute('modal');
-        document.querySelector('container').remove();
-        // document.querySelector('canvas').style.textAlign = 'center';
-        document.body.textAlign = 'center';
-        document.body.display = 'block';
-        document.body.margin = '8px';
-        document.querySelector('canvas').style.display = 'block';
-    }, 500);
-}
-
-// function toggleModal() {
-//     const toggleModal = () => {
-//         document.querySelector('.modal').classList.toggle('.modal')
-//     }   
-//     // modal.classList.toggle('.modal');
-// }
