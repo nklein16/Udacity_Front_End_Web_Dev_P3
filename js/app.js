@@ -8,7 +8,6 @@ let Enemy = function(x, y, speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    // load(this.sprite);
 };
 
 // Update the enemy's position, required method for game
@@ -20,10 +19,6 @@ Enemy.prototype.update = function(dt) {
     if(this.x < 510){
         this.x += this.speed * dt;
     }
-
-    // NOTES:
-    // 1. Board rendering starts at top left
-    // 2. Board is 405px * 405px
 
     if(this.x > 510) {
         this.x = -50;
@@ -56,7 +51,7 @@ let Player = function(x, y) {
 };
 
 Player.prototype.update = function(){
-
+    // Game runs just fine without this function at this time
 };
 
 Player.prototype.render = function() {
@@ -67,6 +62,7 @@ Player.prototype.handleInput = function(e) {
 
     this.key = e;
 
+    // Logic to keep player on the board
     if(this.key === 'left' && player.x >= 1) {
         player.x -= 101;
     }
@@ -101,18 +97,13 @@ Player.prototype.resetPlayer = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-let allEnemies = []
-allEnemies.push(new Enemy(15, 63, 25))
-allEnemies.push(new Enemy(120, 145, 60))
-allEnemies.push(new Enemy(25, 229, 40))
+let allEnemies = [];
+allEnemies.push(new Enemy(15, 63, 25));
+allEnemies.push(new Enemy(120, 145, 60));
+allEnemies.push(new Enemy(25, 229, 40));
 
+// Create new player and place at initial position on board
 const player = new Player(201, 404);
-
-// 72 = y lowest value while still below water
-// 155 (72 + 83) gets next block down
-// 238 (155 + 83) gets next block down
-// 321 (238 + 83) gets to top grass
-// 404 (321 + 83) gets to bottom grass
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -127,12 +118,10 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
-
-
-// Works correctly 
+// Display the winning modal when player reaches the river
 function displayModal(){
 
-    //  Display Game Over Modal
+    // Display Game Over Modal
     let modal = document.getElementById("gameOverModal");
     modal.style.display = 'block';
 
@@ -142,4 +131,4 @@ function displayModal(){
         modal.style.display = 'none';
     });
 
-};
+}
