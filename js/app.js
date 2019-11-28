@@ -1,3 +1,5 @@
+'use strict';
+
 // Enemies our player must avoid
 let Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -64,21 +66,21 @@ Player.prototype.handleInput = function(e) {
 
     // Logic to keep player on the board
     if(this.key === 'left' && player.x >= 1) {
-        player.x -= 101;
+        this.x -= 101;
     }
     if(this.key === 'right' && player.x <= 305) {
-        player.x += 101;
+        this.x += 101;
     }
     if(this.key === 'up' && player.y > 0) {
-        player.y -= 83;
+        this.y -= 83;
     }
     if(this.key === 'down' && player.y <= 321) {
-        player.y += 83;
+        this.y += 83;
 
     }
     // Handle situation when player makes it to the water
-    if(player.y <= 0) {
-        player.resetPlayer();
+    if(this.y <= 0) {
+        this.resetPlayer();
         displayModal();
     }
 
@@ -90,8 +92,8 @@ Player.prototype.handleInput = function(e) {
  * B) Winning the game
  */
 Player.prototype.resetPlayer = function() {
-    player.x = 201;
-    player.y = 404;
+    this.x = 201;
+    this.y = 404;
 };
 
 // Now instantiate your objects.
