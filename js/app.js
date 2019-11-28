@@ -76,7 +76,7 @@ Player.prototype.handleInput = function(e) {
         player.y += 83;
 
     }
-    // Handle situation if player makes it to the water
+    // Handle situation when player makes it to the water
     if(player.y <= 0) {
         player.resetPlayer();
         displayModal();
