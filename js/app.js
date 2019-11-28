@@ -65,16 +65,16 @@ Player.prototype.handleInput = function(e) {
     this.key = e;
 
     // Logic to keep player on the board
-    if(this.key === 'left' && player.x >= 1) {
+    if(this.key === 'left' && this.x >= 1) {
         this.x -= 101;
     }
-    if(this.key === 'right' && player.x <= 305) {
+    if(this.key === 'right' && this.x <= 305) {
         this.x += 101;
     }
-    if(this.key === 'up' && player.y > 0) {
+    if(this.key === 'up' && this.y > 0) {
         this.y -= 83;
     }
-    if(this.key === 'down' && player.y <= 321) {
+    if(this.key === 'down' && this.y <= 321) {
         this.y += 83;
 
     }
