@@ -22,6 +22,8 @@ To run the application:
         git clone https://github.com/nklein16/Udacity_Front_End_Web_Dev_P3.git
     Open a browser window and navigate to the index.html file in your application's directory.
 
+Alternatively, you can find a hosted version of the game here: https://nklein16.github.io/Udacity_Front_End_Web_Dev_P3/
+
 ## List of Resources
 
 I referenced this video by Ben Cunnningham, but that's about it:
